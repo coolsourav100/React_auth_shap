@@ -1,10 +1,13 @@
 import { useContext, useState } from 'react';
 import classes from './ProfileForm.module.css';
 import AuthContext from '../../store/auth-context';
+import { useHistory } from 'react-router-dom';
 
 const ProfileForm = () => {
   const [password , setPassword] = useState('')
   const authCTX = useContext(AuthContext)
+const history = useHistory()
+
   const clickHandler= async(e)=>{
     e.preventDefault()
   await fetch('https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyBXSNb20bgVRFykidj_E0BGJzlwNaZSYos',{
@@ -23,8 +26,9 @@ const ProfileForm = () => {
       return res.json().then((data)=>window.alert(data.error.message))
     }
   }).then((res)=>{
-    console.log(res)})
     window.alert('Password Had be Changed Succesfully ')
+    history.replace('/')
+    console.log(res)})
     .catch((err)=>{
       console.log(err,'err')
     })

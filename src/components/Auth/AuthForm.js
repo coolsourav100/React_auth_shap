@@ -2,8 +2,10 @@ import { useContext, useState } from 'react';
 import AuthContext from '../../store/auth-context';
 
 import classes from './AuthForm.module.css';
+import { useHistory } from 'react-router-dom';
 
 const AuthForm = () => {
+  const history = useHistory()
   const [isLogin, setIsLogin] = useState(true);
   const [enterEmail , setEnterEmail] = useState('')
   const [password , setPassword] = useState('')
@@ -34,6 +36,7 @@ if(isLogin){
     authCTX.login(res.idToken)
     // window.localStorage.setItem('idToken', res.idToken)
     window.alert('SingIn successful')
+    history.replace('/')
     console.log(res)})
 
 }else{
@@ -54,6 +57,7 @@ if(isLogin){
   }).then((res)=>{
     authCTX.login(res.idToken)
     window.alert('SingUP successful')
+    history.replace('/')
     // window.localStorage.setItem('idToken', res.idToken)
     console.log(res)})
 }
