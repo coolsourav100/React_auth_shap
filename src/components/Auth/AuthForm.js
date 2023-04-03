@@ -33,8 +33,11 @@ if(isLogin){
       return res.json().then((data)=>window.alert(data.error.message))
     }
   }).then((res)=>{
-    authCTX.login(res.idToken)
-    // window.localStorage.setItem('idToken', res.idToken)
+    const expirationTime = new Date(
+      new Date().getTime() + +res.expiresIn * 10
+    );
+    // console.log(expirationTime,'experition time')
+    authCTX.login(res.idToken, expirationTime);
     window.alert('SingIn successful')
     history.replace('/')
     console.log(res)})
@@ -55,10 +58,13 @@ if(isLogin){
       return res.json().then((data)=>window.alert(data.error.message))
     }
   }).then((res)=>{
-    authCTX.login(res.idToken)
+    
+    const expirationTime = new Date(
+      new Date().getTime() + +res.expiresIn * 1000
+    );
+    authCTX.login(res.idToken, expirationTime.toISOString());
     window.alert('SingUP successful')
     history.replace('/')
-    // window.localStorage.setItem('idToken', res.idToken)
     console.log(res)})
 }
   }
