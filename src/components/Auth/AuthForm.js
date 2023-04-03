@@ -32,6 +32,8 @@ if(isLogin){
     }
   }).then((res)=>{
     authCTX.login(res.idToken)
+    // window.localStorage.setItem('idToken', res.idToken)
+    window.alert('SingIn successful')
     console.log(res)})
 
 }else{
@@ -51,6 +53,8 @@ if(isLogin){
     }
   }).then((res)=>{
     authCTX.login(res.idToken)
+    window.alert('SingUP successful')
+    // window.localStorage.setItem('idToken', res.idToken)
     console.log(res)})
 }
   }

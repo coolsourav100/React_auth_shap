@@ -10,6 +10,8 @@ const MainNavigation = () => {
   console.log(isLoggedIn)
   const clickHandler =()=>{
     authCTX.logout()
+    window.alert('LogOut Successful!!')
+    // window.localStorage.removeItem('idToken')
   }
   return (
     <header className={classes.header}>
